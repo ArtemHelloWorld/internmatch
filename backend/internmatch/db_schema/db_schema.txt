@@ -1,0 +1,54 @@
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table user {
+  id integer [primary key]
+  password varchat
+  last_login timestamp
+  is_superuser bool
+  username varchar
+  first_name varchar
+  last_name varchar
+  is_staff bool
+  is_active bool
+  date_joined datetime
+  email varchar
+  profile_image varchar
+}
+
+Table intern {
+  id integer [primary key]
+  user integer [ref: - user.id]
+}
+
+Table employer {
+  id integer [primary key]
+  user integer [ref: - user.id]
+}
+
+Table skill {
+  id integer [primary key]
+  intern integer [ref: > intern.id]
+  name varchar
+  rate integer
+}
+
+Table vacancy {
+  id integer [primary key]
+  employer integer [ref: > employer.id]
+  title varchar
+  description varchar
+  salary integer
+  duration integer
+  image varchar
+  time_created timestamp
+  time_updated timestamp
+}
+
+Table echo_vacancy {
+  id integer [primary key]
+  text varchar
+  intern integer [ref: > intern.id]
+  vacancy integer [ref: > vacancy.id]
+  time_created timestamp
+  time_updated timestamp
+}
