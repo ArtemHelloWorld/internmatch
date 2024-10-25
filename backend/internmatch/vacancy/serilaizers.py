@@ -16,7 +16,7 @@ class VacancySerializer(rest_framework.serializers.ModelSerializer):
 
     class Meta:
         model = vacancy.models.Vacancy
-        fields = ['employer', 'title', 'description', 'salary', 'duration', 'image']
+        fields = ['id', 'employer', 'title', 'description', 'salary', 'duration', 'image']
 
 
 class EchoVacancySerializer(rest_framework.serializers.ModelSerializer):

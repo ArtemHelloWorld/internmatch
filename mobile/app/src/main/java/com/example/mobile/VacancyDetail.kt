@@ -1,0 +1,55 @@
+package com.example.mobile
+
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.os.Bundle
+import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
+class VacancyDetail : AppCompatActivity() {
+    @SuppressLint("SetTextI18n")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_vacancy_detail)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+        val title = findViewById<TextView>(R.id.vacancyTitle)
+        val description = findViewById<TextView>(R.id.vacancyDescription)
+        val salary = findViewById<TextView>(R.id.vacancySalary)
+        val duration = findViewById<TextView>(R.id.vacancyDuration)
+
+
+        val vacancyId = intent.getStringExtra("vacancyId")
+        Toast.makeText(this, vacancyId.toString(), Toast.LENGTH_LONG).show()
+        if (vacancyId != null) {
+            val api = Api()
+            api.getVacancyDetail(vacancyId.toInt()) { vacanciesObj->
+                if (vacanciesObj != null) {
+                    title.text = vacanciesObj.title
+                    description.text = vacanciesObj.description
+                    salary.text = "${vacanciesObj.salary} ₽"
+                    duration.text = "${vacanciesObj.duration} мес."
+
+                }
+            }
+        }
+
+        val back = findViewById<TextView>(R.id.back)
+        back.setOnClickListener {
+            // Create an Intent to open SecondActivity
+            val intent = Intent(this, VacanciesList::class.java)
+            this.startActivity(intent)
+        }
+
+
+
+    }
+}

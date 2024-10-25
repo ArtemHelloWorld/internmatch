@@ -33,6 +33,12 @@ class Vacancy(django.db.models.Model):
         blank=True,
         verbose_name='фотография',
     )
+    time_created = django.db.models.DateTimeField(
+        auto_now_add=True
+    )
+    time_updated = django.db.models.DateTimeField(
+        auto_now=True
+    )
 
     def __str__(self):
         return f'Вакансия {self.pk}'
@@ -40,6 +46,7 @@ class Vacancy(django.db.models.Model):
     class Meta:
         verbose_name = 'Вакансия'
         verbose_name_plural = 'Вакансии'
+        ordering = ['-time_created', 'id']
     
 
 class EchoVacancy(django.db.models.Model):
@@ -70,3 +77,5 @@ class EchoVacancy(django.db.models.Model):
     class Meta:
         verbose_name = 'Отклик'
         verbose_name_plural = 'Отклики'
+        ordering = ['time_created', 'id']
+
