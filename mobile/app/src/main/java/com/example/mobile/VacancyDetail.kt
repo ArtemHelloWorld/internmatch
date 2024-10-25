@@ -28,7 +28,6 @@ class VacancyDetail : AppCompatActivity() {
 
 
         val vacancyId = intent.getStringExtra("vacancyId")
-        Toast.makeText(this, vacancyId.toString(), Toast.LENGTH_LONG).show()
         if (vacancyId != null) {
             val api = Api()
             api.getVacancyDetail(vacancyId.toInt()) { vacanciesObj->
@@ -44,12 +43,8 @@ class VacancyDetail : AppCompatActivity() {
 
         val back = findViewById<TextView>(R.id.back)
         back.setOnClickListener {
-            // Create an Intent to open SecondActivity
-            val intent = Intent(this, VacanciesList::class.java)
+            val intent = Intent(this, AuthorizedActivity::class.java)
             this.startActivity(intent)
         }
-
-
-
     }
 }

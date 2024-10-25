@@ -1,27 +1,26 @@
 package com.example.mobile
 
-import android.R.attr.duration
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class VacanciesList : AppCompatActivity() {
+class VacanciesList : Fragment() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_vacancies_list)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+    }
 
-        val vacanciesList: RecyclerView = findViewById(R.id.vacanciesList)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view: View = inflater.inflate(R.layout.fragment_vacancies_list, container, false)
+        val vacanciesList: RecyclerView = view.findViewById(R.id.vacanciesList)
         val vacancies = ArrayList<Vacancy>()
 
         val api = Api()
@@ -31,7 +30,13 @@ class VacanciesList : AppCompatActivity() {
             }
         }
 
-        vacanciesList.layoutManager = LinearLayoutManager(this)
-        vacanciesList.adapter = VacanciesAdapter(vacancies, this)
+        vacanciesList.layoutManager = LinearLayoutManager(requireContext())
+        vacanciesList.adapter = VacanciesAdapter(vacancies, requireContext())
+        return view
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance(param1: String, param2: String) = VacanciesList()
     }
 }

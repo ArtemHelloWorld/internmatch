@@ -32,7 +32,7 @@ class Api {
     }
 
     fun getVacanciesList(callback: (List<Vacancy>) -> Unit) {
-        performGetRequest("http://172.28.125.124:8000/api/v1/vacancy/") { jsonResponse ->
+        performGetRequest("http://192.168.59.41:8000/api/v1/vacancy/") { jsonResponse ->
             if (jsonResponse != null) {
                 val objs = Json.decodeFromString<List<Vacancy>>(jsonResponse)
                 callback(objs)
@@ -44,7 +44,7 @@ class Api {
     }
 
     fun getVacancyDetail(id: Int, callback: (Vacancy?) -> Unit) {
-        performGetRequest("http://172.28.125.124:8000/api/v1/vacancy/${id}/") { jsonResponse ->
+        performGetRequest("http://192.168.59.41:8000/api/v1/vacancy/${id}/") { jsonResponse ->
             if (jsonResponse != null) {
                 val obj = Json.decodeFromString<Vacancy>(jsonResponse)
                 callback(obj)
