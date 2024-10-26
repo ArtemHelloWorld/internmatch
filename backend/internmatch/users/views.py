@@ -37,6 +37,41 @@ class UsersListApiView(rest_framework.generics.ListAPIView):
     def get_queryset(self):
         return users.models.User.objects.all()
 
+class ProfileMyRetrieveAPIView(
+    rest_framework.generics.RetrieveAPIView
+):
+    queryset = users.models.User.objects.all()
+    serializer_class = users.serializers.ProfileSerializer
+
+    def get(self, request, *args, **kwargs):
+        serializer = self.get_serializer(request.user)
+        return rest_framework.response.Response(serializer.data)
+
+class InternProfileMyRetrieveAPIView(
+    rest_framework.generics.RetrieveAPIView
+):
+    queryset = users.models.Intern.objects.all()
+    serializer_class = users.serializers.InternProfileSerializer
+
+    def get(self, request, *args, **kwargs):
+        intern = self.queryset.filter(user=request.user)
+        if intern.exists():
+            serializer = self.get_serializer(intern.first())
+            return rest_framework.response.Response(serializer.data)
+        return rest_framework.response.Response({'intern': 'object does not exists'})
+
+class EmployerProfileMyRetrieveAPIView(
+    rest_framework.generics.RetrieveAPIView
+):
+    queryset = users.models.Employer.objects.all()
+    serializer_class = users.serializers.EmployerProfileSerializer
+
+    def get(self, request, *args, **kwargs):
+        intern = self.queryset.filter(user=request.user)
+        if intern.exists():
+            serializer = self.get_serializer(intern.first())
+            return rest_framework.response.Response(serializer.data)
+        return rest_framework.response.Response({'employer': 'object does not exists'})
 
 class ProfileRetrieveUpdateAPIView(
     rest_framework.generics.RetrieveUpdateAPIView
@@ -58,6 +93,11 @@ class ProfileRetrieveUpdateAPIView(
 class InternViewSet(rest_framework.viewsets.ModelViewSet):
     queryset = users.models.Intern.objects.all()
     serializer_class = users.serializers.InternSerializer
+
+
+class SkillViewSet(rest_framework.viewsets.ModelViewSet):
+    queryset = users.models.Skill.objects.all()
+    serializer_class = users.serializers.SkillSerializer
 
 
 class EmployerViewSet(rest_framework.viewsets.ModelViewSet):

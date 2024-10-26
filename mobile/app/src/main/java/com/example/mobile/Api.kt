@@ -1,6 +1,11 @@
 package com.example.mobile
 
+import android.content.Context
+import android.widget.Toast
 import com.example.mobile.serializers.JWTToken
+import com.example.mobile.serializers.Profile
+import com.example.mobile.serializers.ProfileEmployer
+import com.example.mobile.serializers.ProfileIntern
 import com.example.mobile.serializers.Vacancy
 import kotlinx.serialization.json.Json
 import okhttp3.FormBody
@@ -11,13 +16,24 @@ import okhttp3.Response
 import java.io.IOException
 
 
-class Api {
-    val BaseUrl: String = "http://192.168.59.41:8000/api/v1"
+class Api (
+    val context: Context
+){
+    val BaseUrl: String = "http://172.30.110.78:8000/api/v1"
 
     fun get(url: String, callback: (String?) -> Unit)  {
         val client = OkHttpClient()
 
-        val request = Request.Builder().url(url).build()
+        val builder = Request.Builder().url(url)
+
+        val sharedPreferences = SharedPreferences()
+        val accessToken = sharedPreferences.get("access_token", context)
+
+        if (accessToken != null && accessToken != ""){
+            builder.header("Authorization", "Bearer ${accessToken}")
+        }
+
+        val request = builder.build()
 
         client.newCall(request).enqueue(object : okhttp3.Callback {
             override fun onFailure(call: okhttp3.Call, e: IOException) {
@@ -68,6 +84,40 @@ class Api {
         post("${BaseUrl}/token/", formBody) { jsonResponse ->
             if (jsonResponse != null) {
                 val obj = Json.decodeFromString<JWTToken>(jsonResponse)
+                callback(obj)
+            }
+            else {
+                callback(null)
+            }
+        }
+    }
+
+    fun getProfile(callback: (Profile?) -> Unit) {
+        get("${BaseUrl}/profile/") { jsonResponse ->
+            if (jsonResponse != null) {
+                val obj = Json.decodeFromString<Profile>(jsonResponse)
+                callback(obj)
+            }
+            else {
+                callback(null)
+            }
+        }
+    }
+    fun getProfileIntern(callback: (ProfileIntern?) -> Unit) {
+        get("${BaseUrl}/profile/intern/") { jsonResponse ->
+            if (jsonResponse != null) {
+                val obj = Json.decodeFromString<ProfileIntern>(jsonResponse)
+                callback(obj)
+            }
+            else {
+                callback(null)
+            }
+        }
+    }
+    fun getProfileEmployer(callback: (ProfileEmployer?) -> Unit) {
+        get("${BaseUrl}/profile/employer/") { jsonResponse ->
+            if (jsonResponse != null) {
+                val obj = Json.decodeFromString<ProfileEmployer>(jsonResponse)
                 callback(obj)
             }
             else {

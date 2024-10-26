@@ -49,6 +49,18 @@ class SkillSerializer(rest_framework.serializers.ModelSerializer):
 
 
 class ProfileSerializer(rest_framework.serializers.ModelSerializer):
+    user_type = rest_framework.serializers.SerializerMethodField()
+
+    def get_user_type(self, obj):
+        if obj.is_anonymous:
+            return None
+
+        if hasattr(obj, 'intern'):
+            return 'intern'
+        elif hasattr(obj, 'employer'):
+            return 'employer'
+        return None
+    
     class Meta:
         model = users.models.User
         fields = [
@@ -58,8 +70,26 @@ class ProfileSerializer(rest_framework.serializers.ModelSerializer):
             'first_name',
             'last_name',
             'profile_image',
+            'user_type'
         ]
 
+
+class InternProfileSerializer(rest_framework.serializers.ModelSerializer):
+    skills = SkillSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = users.models.Intern
+        fields = [
+            'id',
+            'skills',
+        ]
+
+class EmployerProfileSerializer(rest_framework.serializers.ModelSerializer):
+    class Meta:
+        model = users.models.Employer
+        fields = [
+            'id',
+        ]
 
 class InternSerializer(rest_framework.serializers.ModelSerializer):
     skills = SkillSerializer(many=True, read_only=True)

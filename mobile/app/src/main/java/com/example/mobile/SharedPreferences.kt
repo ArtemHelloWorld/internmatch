@@ -17,5 +17,3 @@ class SharedPreferences {
         return sharedPreferences.getString(key, null)
     }
 }
-
-}

@@ -29,7 +29,7 @@ class VacancyDetail : AppCompatActivity() {
 
         val vacancyId = intent.getStringExtra("vacancyId")
         if (vacancyId != null) {
-            val api = Api()
+            val api = Api(this)
             api.getVacancyDetail(vacancyId.toInt()) { vacanciesObj->
                 if (vacanciesObj != null) {
                     title.text = vacanciesObj.title

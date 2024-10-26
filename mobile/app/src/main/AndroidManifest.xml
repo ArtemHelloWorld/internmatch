@@ -20,19 +20,13 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".VacanciesListOutdated"
-            android:exported="false" />
-        <activity
             android:name=".VacancyDetail"
             android:exported="false" />
         <activity
-            android:name=".vacancy_detail"
+            android:name=".AuthorizedActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AuthorizedActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

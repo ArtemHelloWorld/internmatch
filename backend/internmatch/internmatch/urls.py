@@ -19,6 +19,7 @@ schema_view = drf_yasg.views.get_schema_view(
 
 router = routers.DefaultRouter()
 router.register(r'intern', users.views.InternViewSet)
+router.register(r'skill', users.views.SkillViewSet)
 router.register(r'emplyer', users.views.EmployerViewSet)
 router.register(r'vacancy', vacancy.views.VacancyViewSet)
 router.register(r'echo-vacancy', vacancy.views.EchoVacancyViewSet)
@@ -58,6 +59,21 @@ urlpatterns = [
         'api/v1/users/list/',
         users.views.UsersListApiView.as_view(),
         name='users-list',
+    ),
+    django.urls.path(
+        'api/v1/profile/',
+        users.views.ProfileMyRetrieveAPIView.as_view(),
+        name='profile-my-read-update',
+    ),
+    django.urls.path(
+        'api/v1/profile/intern/',
+        users.views.InternProfileMyRetrieveAPIView.as_view(),
+        name='profile-intern-my-read-update',
+    ),
+    django.urls.path(
+        'api/v1/profile/employer/',
+        users.views.EmployerProfileMyRetrieveAPIView.as_view(),
+        name='profile-employer-my-read-update',
     ),
     django.urls.path(
         'api/v1/profile/<int:user_id>/',

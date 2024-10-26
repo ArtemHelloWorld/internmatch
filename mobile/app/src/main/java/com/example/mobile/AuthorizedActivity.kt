@@ -25,7 +25,7 @@ class AuthorizedActivity : AppCompatActivity() {
                     true
                 }
                 R.id.profile -> {
-                    loadFragment(Profile())
+                    loadFragment(ProfilePage())
                     true
                 }
 

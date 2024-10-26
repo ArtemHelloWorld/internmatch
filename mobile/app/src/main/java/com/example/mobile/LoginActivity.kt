@@ -28,13 +28,13 @@ class LoginActivity : AppCompatActivity() {
         val errorMessage = findViewById<TextView>(R.id.errorMessage)
 
         loginBtn.setOnClickListener {
-            val api = Api()
+            val api = Api(this)
             api.login(username.text.toString(), password.text.toString()) { jwtToken ->
                 if (jwtToken != null) {
                     val sharedPreferences = SharedPreferences()
                     sharedPreferences.save("access_token", jwtToken.access, context = this)
                     sharedPreferences.save("refresh_token", jwtToken.refresh, context = this)
-                    
+
                     val intent = Intent(this, MainActivity::class.java)
                     this.startActivity(intent)
                 }

@@ -24,7 +24,7 @@ class VacanciesList : Fragment() {
         val vacanciesList: RecyclerView = view.findViewById(R.id.vacanciesList)
         val vacancies = ArrayList<Vacancy>()
 
-        val api = Api()
+        val api = Api(view.context)
         api.getVacanciesList() { vacanciesObjs ->
             for (vacanciesObj in vacanciesObjs){
                 vacancies.add(vacanciesObj)
