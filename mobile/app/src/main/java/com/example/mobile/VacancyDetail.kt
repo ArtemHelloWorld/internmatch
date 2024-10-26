@@ -23,6 +23,7 @@ class VacancyDetail : AppCompatActivity() {
         }
         val title = findViewById<TextView>(R.id.vacancyTitle)
         val description = findViewById<TextView>(R.id.vacancyDescription)
+        val vacancyEmployer = findViewById<TextView>(R.id.vacancyEmployer)
         val salary = findViewById<TextView>(R.id.vacancySalary)
         val duration = findViewById<TextView>(R.id.vacancyDuration)
 
@@ -34,6 +35,8 @@ class VacancyDetail : AppCompatActivity() {
                 if (vacanciesObj != null) {
                     title.text = vacanciesObj.title
                     description.text = vacanciesObj.description
+
+                    vacancyEmployer.text = vacanciesObj.employer
                     salary.text = "${vacanciesObj.salary} ₽"
                     duration.text = "${vacanciesObj.duration} мес."
 

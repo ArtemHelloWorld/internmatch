@@ -7,6 +7,7 @@ class Vacancy(
     val employer: String,
     val title: String,
     val description: String,
+    val skills: String,
     val salary: Int,
     val duration: Int,
     val image: String? = null,

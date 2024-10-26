@@ -22,6 +22,10 @@ class Vacancy(django.db.models.Model):
         blank=True,
         verbose_name='зарпалата'
     )
+    skills = django.db.models.CharField(
+        max_length=100,
+        verbose_name='необходимые навыки'
+    )
     duration = django.db.models.IntegerField(
         null=True,
         blank=True,

@@ -7,6 +7,7 @@ import rest_framework.status
 
 import users.models
 import users.serializers_external
+import vacancy.serializers
 
 
 class UserSerializer(rest_framework.serializers.ModelSerializer):
@@ -85,10 +86,13 @@ class InternProfileSerializer(rest_framework.serializers.ModelSerializer):
         ]
 
 class EmployerProfileSerializer(rest_framework.serializers.ModelSerializer):
+    vacancies = vacancy.serializers.VacancySerializer(many=True, read_only=True)
+
     class Meta:
         model = users.models.Employer
         fields = [
             'id',
+            'vacancies'
         ]
 
 class InternSerializer(rest_framework.serializers.ModelSerializer):

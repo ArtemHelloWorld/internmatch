@@ -15,6 +15,7 @@ class VacanciesAdapter(var vacancies: List<Vacancy>, var context: Context) : Rec
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.vacancy_title)
         val description: TextView = view.findViewById(R.id.vacancy_description)
+        val salary: TextView = view.findViewById(R.id.vacancy_salary)
         val detail_button: Button = view.findViewById(R.id.vacancy_detail_button)
     }
 
@@ -29,7 +30,9 @@ class VacanciesAdapter(var vacancies: List<Vacancy>, var context: Context) : Rec
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.title.text = vacancies[position].title
-        holder.description.text = vacancies[position].description
+        holder.description.text = vacancies[position].skills
+        holder.salary.text = "${vacancies[position].salary} ₽"
+
         holder.detail_button.setOnClickListener {
             // Create an Intent to open SecondActivity
             val intent = Intent(context, VacancyDetail::class.java)
