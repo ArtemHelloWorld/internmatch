@@ -23,18 +23,20 @@ class VacancyDetail : AppCompatActivity() {
         }
         val title = findViewById<TextView>(R.id.vacancyTitle)
         val description = findViewById<TextView>(R.id.vacancyDescription)
+        val skills = findViewById<TextView>(R.id.vacancySkills)
         val vacancyEmployer = findViewById<TextView>(R.id.vacancyEmployer)
         val salary = findViewById<TextView>(R.id.vacancySalary)
         val duration = findViewById<TextView>(R.id.vacancyDuration)
 
 
-        val vacancyId = intent.getStringExtra("vacancyId")
-        if (vacancyId != null) {
+        val vacancyId = intent.getIntExtra("vacancyId", -1)
+        if (vacancyId != -1) {
             val api = Api(this)
-            api.getVacancyDetail(vacancyId.toInt()) { vacanciesObj->
+            api.getVacancyDetail(vacancyId) { vacanciesObj->
                 if (vacanciesObj != null) {
                     title.text = vacanciesObj.title
                     description.text = vacanciesObj.description
+                    skills.text = vacanciesObj.skills
 
                     vacancyEmployer.text = vacanciesObj.employer
                     salary.text = "${vacanciesObj.salary} ₽"
@@ -46,8 +48,7 @@ class VacancyDetail : AppCompatActivity() {
 
         val back = findViewById<TextView>(R.id.back)
         back.setOnClickListener {
-            val intent = Intent(this, AuthorizedActivity::class.java)
-            this.startActivity(intent)
+            finish()
         }
     }
 }

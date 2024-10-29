@@ -5,10 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VacancyDetail">
+    tools:context=".EchoVacancyDetail">
 
     <TextView
-        android:id="@+id/vacancyTitle"
+        android:id="@+id/pageTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -26,55 +26,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
-        android:contextClickable="false"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vacancyTitle">
+        app:layout_constraintTop_toBottomOf="@+id/pageTitle">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/vacancyEmployer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Стажировка в"
+            android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/t"
-                android:layout_width="203dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Вакансия:"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/echodetailVacansy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                tools:text="pythonenjoyer" />
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/vacancyTitle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            tools:text="Название стажировки" />
+        <TextView
+            android:id="@+id/vacancySkills"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            tools:text="Необходимые навыки" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Компания"
-                android:textSize="20sp" />
+        <TextView
+            android:id="@+id/vacancyInternText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Стажёр"
+            android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/echodetailCompany"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                tools:text="Yandex" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/vacancyIntern"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            tools:text="ФИО стажёра" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -86,62 +78,63 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Зарплата"
+                android:text="Время отклика"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/vacancySalary"
+                android:id="@+id/vacancyTimeCreated"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="₽"
+                android:text="YYYY:MM:DD"
                 android:textSize="20sp" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Продолжительность"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/vacancyDuration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                tools:text="мес." />
         </LinearLayout>
 
     </LinearLayout>
 
+    <ListView
+        android:id="@+id/internSkills"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:orientation="horizontal"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/echoButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Откликнуться" />
 
         <Button
             android:id="@+id/back"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Назад" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Навыки стажёра"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

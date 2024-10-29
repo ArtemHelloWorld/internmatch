@@ -30,6 +30,7 @@ class Intern(django.db.models.Model):
         verbose_name='intern'
     )
 
+
     def __str__(self):
         return f'Стажер {self.pk}'
 
@@ -43,6 +44,12 @@ class Employer(django.db.models.Model):
         User,
         on_delete=django.db.models.CASCADE,
         verbose_name='employer'
+    )
+    inn = django.db.models.CharField(
+        null=True,
+        blank=True,
+        max_length=12,
+        verbose_name='ИНН'
     )
 
     def __str__(self):

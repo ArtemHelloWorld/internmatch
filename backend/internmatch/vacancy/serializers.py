@@ -1,4 +1,5 @@
 import rest_framework.serializers
+import rest_framework.exceptions
 
 import vacancy.models
 
@@ -20,12 +21,17 @@ class VacancySerializer(rest_framework.serializers.ModelSerializer):
 
 
 class EchoVacancySerializer(rest_framework.serializers.ModelSerializer):
-    intern = rest_framework.serializers.ReadOnlyField(source='intern.user.username')
+    intern_username = rest_framework.serializers.ReadOnlyField(source='intern.user.username')
+    vacancy_meta = VacancySerializer(source='vacancy', read_only=True)
 
     def create(self, validated_data):
         request = self.context.get('request')
+        if not hasattr(request.user, 'intern'):
+            return rest_framework.exceptions.ValidationError(
+                'Откликаться могут только стажёры'
+            )
         item = vacancy.models.EchoVacancy.objects.create(
-            intern=request.user,
+            intern=request.user.intern,
             **validated_data
         )
         return item

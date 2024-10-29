@@ -36,7 +36,7 @@ class VacanciesAdapter(var vacancies: List<Vacancy>, var context: Context) : Rec
         holder.detail_button.setOnClickListener {
             // Create an Intent to open SecondActivity
             val intent = Intent(context, VacancyDetail::class.java)
-            intent.putExtra("vacancyId", vacancies[position].id.toString())
+            intent.putExtra("vacancyId", vacancies[position].id)
             context.startActivity(intent)
         }
 

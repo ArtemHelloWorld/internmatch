@@ -25,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
         val username = findViewById<EditText>(R.id.username)
         val password = findViewById<EditText>(R.id.password)
         val loginBtn = findViewById<Button>(R.id.login)
+        val signupBtn = findViewById<Button>(R.id.signup)
         val errorMessage = findViewById<TextView>(R.id.errorMessage)
 
         loginBtn.setOnClickListener {
@@ -42,7 +43,11 @@ class LoginActivity : AppCompatActivity() {
                     errorMessage.isVisible = true
                 }
             }
+        }
 
+        signupBtn.setOnClickListener {
+            val intent = Intent(this, SignupChoose::class.java)
+            startActivity(intent)
         }
 
 

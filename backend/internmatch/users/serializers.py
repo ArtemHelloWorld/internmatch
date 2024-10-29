@@ -92,7 +92,8 @@ class EmployerProfileSerializer(rest_framework.serializers.ModelSerializer):
         model = users.models.Employer
         fields = [
             'id',
-            'vacancies'
+            'vacancies',
+            'inn',
         ]
 
 class InternSerializer(rest_framework.serializers.ModelSerializer):
@@ -124,4 +125,5 @@ class EmployerSerializer(rest_framework.serializers.ModelSerializer):
         fields = [
             'id',
             'user',
+            'inn',
         ]

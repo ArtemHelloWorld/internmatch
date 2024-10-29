@@ -26,13 +26,17 @@ class VacanciesList : Fragment() {
 
         val api = Api(view.context)
         api.getVacanciesList() { vacanciesObjs ->
-            for (vacanciesObj in vacanciesObjs){
-                vacancies.add(vacanciesObj)
-            }
+            activity?.runOnUiThread(Runnable {
+
+                for (vacanciesObj in vacanciesObjs) {
+                    vacancies.add(vacanciesObj)
+                }
+                vacanciesList.layoutManager = LinearLayoutManager(requireContext())
+                vacanciesList.adapter = VacanciesAdapter(vacancies, requireContext())
+            })
         }
 
-        vacanciesList.layoutManager = LinearLayoutManager(requireContext())
-        vacanciesList.adapter = VacanciesAdapter(vacancies, requireContext())
+
         return view
     }
 

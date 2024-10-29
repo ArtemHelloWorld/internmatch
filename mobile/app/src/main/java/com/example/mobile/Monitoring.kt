@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.mobile.serializers.EchoVacancy
 
 
 class Monitoring : Fragment() {
@@ -16,7 +19,24 @@ class Monitoring : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_monitoring, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_monitoring, container, false)
+        val echoVacanciesList: RecyclerView = view.findViewById(R.id.echoVacanciesList)
+        val echoVacancies = ArrayList<EchoVacancy>()
+
+        val api = Api(view.context)
+        api.getEchoVacanciesList() { echoVacanciesObjs ->
+            activity?.runOnUiThread(Runnable {
+
+                for (echoVacanciesObj in echoVacanciesObjs) {
+                    echoVacancies.add(echoVacanciesObj)
+                }
+                echoVacanciesList.layoutManager = LinearLayoutManager(requireContext())
+                echoVacanciesList.adapter = EchoVacanciesAdapter(echoVacancies, requireContext())
+            })
+        }
+
+        return view
+
     }
 
     companion object {

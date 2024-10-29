@@ -17,6 +17,21 @@
         android:theme="@style/Theme.Mobile"
         tools:targetApi="31">
         <activity
+            android:name=".SignupEmployer"
+            android:exported="false" />
+        <activity
+            android:name=".SignupIntern"
+            android:exported="false" />
+        <activity
+            android:name=".EmployerSignup"
+            android:exported="false" />
+        <activity
+            android:name=".InternSignup"
+            android:exported="false" />
+        <activity
+            android:name=".SignupChoose"
+            android:exported="false" />
+        <activity
             android:name=".SkillCreation"
             android:exported="false" />
         <activity

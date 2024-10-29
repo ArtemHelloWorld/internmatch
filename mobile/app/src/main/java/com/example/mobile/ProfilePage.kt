@@ -27,17 +27,15 @@ class ProfilePage : Fragment() {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         val username = view.findViewById<TextView>(R.id.usernameProfile)
         val email = view.findViewById<TextView>(R.id.emailProfile)
+        val inn = view.findViewById<TextView>(R.id.innProfile)
 
         val list = view.findViewById<ListView>(R.id.listView)
         val listTitle = view.findViewById<TextView>(R.id.listTitle)
 
+        val addButton = view.findViewById<TextView>(R.id.addButton)
         val logoutBtn = view.findViewById<Button>(R.id.logoutBtn)
 
-        logoutBtn.setOnClickListener {
-            sharedPreferences.save("access_token", "", view.context)
-            val intent = Intent(view.context, LoginActivity::class.java)
-            this.startActivity(intent)
-        }
+
         val api = Api(view.context)
         api.getProfile() { profileObj ->
             if (profileObj != null){
@@ -55,7 +53,7 @@ class ProfilePage : Fragment() {
         val user_type = sharedPreferences.get("user_type", view.context)
 
         if (user_type == "intern"){
-            api.getProfileIntern() { profileInternObj ->
+            api.getMyProfileIntern() { profileInternObj ->
                 if (profileInternObj != null){
                     activity?.runOnUiThread(Runnable {
                         val itemDataList = ArrayList<Map<String, Any>>()
@@ -78,17 +76,22 @@ class ProfilePage : Fragment() {
                     })
                 }
             }
+
+            addButton.setOnClickListener {
+                val intent = Intent(view.context, SkillCreation::class.java)
+                this.startActivity(intent)
+            }
         }
 
         else if (user_type == "employer"){
-            api.getProfileEmployer() { profileInternObj ->
-                if (profileInternObj != null){
+            api.getMyProfileEmployer() { profileEmployerObj ->
+                if (profileEmployerObj != null){
                     activity?.runOnUiThread(Runnable {
                         val itemDataList = ArrayList<Map<String, Any>>()
-                        for (vacancy in profileInternObj.vacancies){
+                        for (vacancy in profileEmployerObj.vacancies){
                             val listItemMap: MutableMap<String, Any> = HashMap()
                             listItemMap["title"] = vacancy.title
-                            listItemMap["description"] = vacancy.description
+                            listItemMap["description"] = vacancy.skills
                             itemDataList.add(listItemMap)
                         }
                         val simpleAdapter = SimpleAdapter(
@@ -100,13 +103,24 @@ class ProfilePage : Fragment() {
                         )
                         list.adapter = simpleAdapter
                         listTitle.text = "Мои стажировки"
+                        inn.text = "(ИНН ${profileEmployerObj.inn})"
 
                     })
                 }
             }
+
+            addButton.setOnClickListener {
+                val intent = Intent(view.context, VacancyCreation::class.java)
+                this.startActivity(intent)
+            }
         }
 
 
+        logoutBtn.setOnClickListener {
+            sharedPreferences.save("access_token", "", view.context)
+            val intent = Intent(view.context, LoginActivity::class.java)
+            this.startActivity(intent)
+        }
 
         return view
     }

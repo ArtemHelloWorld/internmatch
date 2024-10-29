@@ -33,37 +33,54 @@
         app:layout_constraintTop_toBottomOf="@+id/vacancyTitle">
 
         <TextView
-            android:id="@+id/vacancyDescription"
+            android:id="@+id/vacancyEmployerText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/m3_default_color_secondary_text"
+            android:textSize="30sp"
+            android:text="Компания" />
+        <TextView
+            android:id="@+id/vacancyEmployer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/m3_default_color_secondary_text"
+            android:textSize="20sp"
+            tools:text="Название компании" />
+
+        <TextView
+            android:id="@+id/vacancyDescriptionText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
-            android:textSize="20sp" />
+            android:textSize="30sp"
+            android:text="Описание"/>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/vacancyDescription"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            tools:text="Описание стажировки"/>
+        <TextView
+            android:id="@+id/vacancySkillsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:textSize="30sp"
+            android:text="Навыки"/>
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Компания"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/vacancyEmployer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                tools:text="мес." />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/vacancySkills"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            tools:text="Необходимые навыки"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
             <TextView
@@ -109,22 +126,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:orientation="horizontal"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/echoButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Откликнуться" />
 
         <Button
             android:id="@+id/back"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Назад" />
     </LinearLayout>

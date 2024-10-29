@@ -7,97 +7,94 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
-    tools:context=".VacancyCreation">
-
+    tools:context=".SignupIntern">
 
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Добавить вакансию"
+        android:text="Регистрация"
         android:textSize="34sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editTextLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Логин"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Пароль"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/editTextFirstName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextFirstName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Имя"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/editTextLastName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextLastName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Фамилия"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextJobTitle"
+        android:id="@+id/editTextBirthdate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Название"
-        android:inputType="text"
+        android:hint="Дата рождения"
+        android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewTitle" />
-
-    <EditText
-        android:id="@+id/editTextDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Описание"
-        android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextJobTitle" />
-
-    <EditText
-        android:id="@+id/editTextSkills"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Необходимые навыки (через запятую)"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextDescription" />
-
-    <EditText
-        android:id="@+id/editTextSalary"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Зарплата"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextSkills" />
-
-    <EditText
-        android:id="@+id/editTextDuration"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Продолжительность (в месяцах)"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextSalary" />
+        app:layout_constraintTop_toBottomOf="@id/editTextLastName" />
 
     <Button
-        android:id="@+id/buttonAdd"
+        android:id="@+id/buttonRegister"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:text="Добавить"
-        app:layout_constraintBottom_toTopOf="@+id/buttonCancel"
+        android:text="Зарегистрироваться"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextBirthdate" />
 
-    <Button
-        android:id="@+id/buttonCancel"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/textViewAlreadyHaveAccount"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:text="Отмена"
+        android:layout_marginBottom="32dp"
+        android:text="Уже есть аккаунт?"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+
+
         app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
