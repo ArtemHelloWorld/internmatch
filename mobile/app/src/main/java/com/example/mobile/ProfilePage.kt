@@ -72,6 +72,7 @@ class ProfilePage : Fragment() {
                         )
                         list.adapter = simpleAdapter
                         listTitle.text = "Навыки"
+                        inn.text = "(${profileInternObj.resume_link})"
 
                     })
                 }

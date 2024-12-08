@@ -25,6 +25,7 @@ class VacancyCreation : AppCompatActivity() {
         val editTextSkills: EditText = findViewById(R.id.editTextSkills)
         val editTextSalary: EditText = findViewById(R.id.editTextSalary)
         val editTextDuration: EditText = findViewById(R.id.editTextDuration)
+        val editTextHours: EditText = findViewById(R.id.editTextHours)
 
         val buttonAdd: Button = findViewById(R.id.buttonAdd)
         val buttonCancel: Button = findViewById(R.id.buttonCancel)
@@ -35,9 +36,11 @@ class VacancyCreation : AppCompatActivity() {
             val skills = editTextSkills.text.toString()
             val salary = editTextSalary.text.toString()
             val duration = editTextDuration.text.toString()
+            val hours = editTextHours.text.toString()
 
             if (jobTitle.isNotEmpty() && description.isNotEmpty() &&
-                skills.isNotEmpty() && salary.isNotEmpty() && duration.isNotEmpty()) {
+                skills.isNotEmpty() && salary.isNotEmpty() &&
+                duration.isNotEmpty()&& hours.isNotEmpty()) {
                 // todo: создание вакансии
             } else {
                 Toast.makeText(this, "Пожалуйста заполните все необходимые поля", Toast.LENGTH_SHORT).show()

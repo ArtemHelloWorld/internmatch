@@ -6,7 +6,7 @@ import vacancy.models
 
 class VacancySerializer(rest_framework.serializers.ModelSerializer):
     employer = rest_framework.serializers.ReadOnlyField(source='employer.user.username')
-
+    
     def create(self, validated_data):
         request = self.context.get('request')
         item = vacancy.models.Vacancy.objects.create(
@@ -17,11 +17,12 @@ class VacancySerializer(rest_framework.serializers.ModelSerializer):
 
     class Meta:
         model = vacancy.models.Vacancy
-        fields = ['id', 'employer', 'title', 'description', 'skills', 'salary', 'duration', 'image']
+        fields = ['id', 'employer', 'title', 'description', 'skills', 'salary', 'duration', 'hours_per_week', 'image']
 
 
 class EchoVacancySerializer(rest_framework.serializers.ModelSerializer):
     intern_username = rest_framework.serializers.ReadOnlyField(source='intern.user.username')
+    resume_link = rest_framework.serializers.ReadOnlyField(source='intern.resume_link')
     vacancy_meta = VacancySerializer(source='vacancy', read_only=True)
 
     def create(self, validated_data):
