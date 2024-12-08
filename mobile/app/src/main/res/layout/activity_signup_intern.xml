@@ -71,6 +71,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextLastName" />
 
+
+    <EditText
+        android:id="@+id/editTextResume"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Ссылка на резюме"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextBirthdate" />
+
     <Button
         android:id="@+id/buttonRegister"
         android:layout_width="0dp"
@@ -81,7 +92,7 @@
         android:text="Зарегистрироваться"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextBirthdate" />
+        app:layout_constraintTop_toBottomOf="@id/editTextResume" />
 
     <TextView
         android:id="@+id/textViewAlreadyHaveAccount"

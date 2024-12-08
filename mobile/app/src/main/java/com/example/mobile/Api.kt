@@ -21,7 +21,7 @@ import java.io.IOException
 class Api (
     val context: Context
 ){
-    val BaseUrl: String = "http://172.28.125.124:8000/api/v1"
+    val BaseUrl: String = "http://192.168.129.41:8000/api/v1"
 
     fun get(url: String, callback: (String?) -> Unit)  {
         val client = OkHttpClient()
@@ -140,8 +140,8 @@ class Api (
         }
     }
 
-    fun getVacanciesList(callback: (List<Vacancy>) -> Unit) {
-        get("${BaseUrl}/vacancy/") { jsonResponse ->
+    fun getVacanciesList(search: String? = "", callback: (List<Vacancy>) -> Unit) {
+        get("${BaseUrl}/vacancy/?search=${search}") { jsonResponse ->
             if (jsonResponse != null) {
                 val objs = Json.decodeFromString<List<Vacancy>>(jsonResponse)
                 callback(objs)

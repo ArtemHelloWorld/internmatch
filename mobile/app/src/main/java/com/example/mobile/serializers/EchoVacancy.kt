@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 class EchoVacancy(
     val id: Int,
     val intern_username: String,
+    val resume_link: String? = null,
     val vacancy_meta: Vacancy,
     val text: String,
     val time_created: String,

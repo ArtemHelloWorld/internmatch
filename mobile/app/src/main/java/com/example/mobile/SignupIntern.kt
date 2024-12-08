@@ -27,6 +27,7 @@ class SignupIntern : AppCompatActivity() {
         val editTextFirstName: EditText = findViewById(R.id.editTextFirstName)
         val editTextLastName: EditText = findViewById(R.id.editTextLastName)
         val editTextBirthdate: EditText = findViewById(R.id.editTextBirthdate)
+        val editTextResume: EditText = findViewById(R.id.editTextResume)
         val buttonRegister: Button = findViewById(R.id.buttonRegister)
         val textViewAlreadyHaveAccount: TextView = findViewById(R.id.textViewAlreadyHaveAccount)
 
@@ -36,8 +37,8 @@ class SignupIntern : AppCompatActivity() {
             val firstName = editTextFirstName.text.toString()
             val lastName = editTextLastName.text.toString()
             val birthdate = editTextBirthdate.text.toString()
-
-            if (login.isNotEmpty() && password.isNotEmpty() && firstName.isNotEmpty() && lastName.isNotEmpty() && birthdate.isNotEmpty()) {
+            val resumeLink = editTextResume.text.toString()
+            if (login.isNotEmpty() && password.isNotEmpty() && firstName.isNotEmpty() && lastName.isNotEmpty() && birthdate.isNotEmpty() && resumeLink.isNotEmpty()) {
                 // todo: signup
             } else {
                 Toast.makeText(this, "Пожалуйста, заполните все необходимые поля", Toast.LENGTH_SHORT).show()
