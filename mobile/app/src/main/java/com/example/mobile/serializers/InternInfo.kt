@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 class InternInfo (
     val id: Int,
     val user: Profile,
-    val skills: List<Skill>
+    val skills: List<Skill>,
+    val resume_link: String? = null,
 ){
 }

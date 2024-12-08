@@ -3,6 +3,7 @@ package com.example.mobile
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.widget.ListView
 import android.widget.SimpleAdapter
 import android.widget.TextView
@@ -27,6 +28,7 @@ class EchoVacancyDetail : AppCompatActivity() {
         val vacancyTitle = findViewById<TextView>(R.id.vacancyTitle)
         val vacancySkills = findViewById<TextView>(R.id.vacancySkills)
         val vacancyIntern = findViewById<TextView>(R.id.vacancyIntern)
+        val vacancyResume = findViewById<TextView>(R.id.vacancyResume)
         val vacancyTimeCreated = findViewById<TextView>(R.id.vacancyTimeCreated)
         val internSkills = findViewById<ListView>(R.id.internSkills)
 
@@ -44,6 +46,13 @@ class EchoVacancyDetail : AppCompatActivity() {
                         vacancyTitle.text = echoVacanciesObj.vacancy_meta.title
                         vacancySkills.text = echoVacanciesObj.vacancy_meta.skills
                         vacancyIntern.text = echoVacanciesObj.intern_username
+                        if (echoVacanciesObj.resume_link != null) {
+                            vacancyResume.text = echoVacanciesObj.resume_link
+                            vacancyResume.movementMethod = LinkMovementMethod.getInstance()
+                        }
+                        else {
+                            vacancyResume.text = "нет ссылки"
+                        }
                         vacancyTimeCreated.text = echoVacanciesObj.time_created.slice(0..18).replace('T', ' ')
                     })
                 }

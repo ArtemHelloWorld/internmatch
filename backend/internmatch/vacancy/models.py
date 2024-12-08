@@ -37,6 +37,10 @@ class Vacancy(django.db.models.Model):
         blank=True,
         verbose_name='фотография',
     )
+    hours_per_week = django.db.models.IntegerField(
+        default=40,
+        verbose_name='занятость в неделю в часах'
+    )
     time_created = django.db.models.DateTimeField(
         auto_now_add=True
     )

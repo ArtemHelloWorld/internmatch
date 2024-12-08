@@ -30,6 +30,11 @@ class Intern(django.db.models.Model):
         verbose_name='intern'
     )
 
+    resume_link = django.db.models.TextField(
+        null=True,
+        blank=True,
+        verbose_name='ссылка на резюме'
+    )
 
     def __str__(self):
         return f'Стажер {self.pk}'

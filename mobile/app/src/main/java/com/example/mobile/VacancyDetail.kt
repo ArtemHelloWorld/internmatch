@@ -27,6 +27,7 @@ class VacancyDetail : AppCompatActivity() {
         val vacancyEmployer = findViewById<TextView>(R.id.vacancyEmployer)
         val salary = findViewById<TextView>(R.id.vacancySalary)
         val duration = findViewById<TextView>(R.id.vacancyDuration)
+        val hoursPerWeek = findViewById<TextView>(R.id.vacancyHoursPerWeek)
 
 
         val vacancyId = intent.getIntExtra("vacancyId", -1)
@@ -41,7 +42,12 @@ class VacancyDetail : AppCompatActivity() {
                     vacancyEmployer.text = vacanciesObj.employer
                     salary.text = "${vacanciesObj.salary} ₽"
                     duration.text = "${vacanciesObj.duration} мес."
-
+                    if (vacanciesObj.hours_per_week == 40) {
+                        hoursPerWeek.text = "Полная занятость"
+                    }
+                    else {
+                        hoursPerWeek.text = "${vacanciesObj.hours_per_week} ч."
+                    }
                 }
             }
         }
