@@ -83,6 +83,7 @@ class InternProfileSerializer(rest_framework.serializers.ModelSerializer):
         fields = [
             'id',
             'skills',
+            'resume_link',
         ]
 
 class EmployerProfileSerializer(rest_framework.serializers.ModelSerializer):
@@ -110,6 +111,7 @@ class InternSerializer(rest_framework.serializers.ModelSerializer):
             'id',
             'user',
             'skills',
+            'resume_link',
         ]
 
 

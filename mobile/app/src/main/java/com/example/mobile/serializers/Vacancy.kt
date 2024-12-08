@@ -10,6 +10,7 @@ class Vacancy(
     val skills: String,
     val salary: Int,
     val duration: Int,
+    val hours_per_week: Int,
     val image: String? = null,
 ) {
 
