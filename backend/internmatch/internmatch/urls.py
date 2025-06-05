@@ -90,6 +90,14 @@ urlpatterns = [
     ),
 ]
 
+urlpatterns += [
+    django.urls.path(
+        'api/v1/vacancy-recent/',
+        vacancy.views.RecentVacanciesView.as_view(),
+        name='recent-vacancies',
+    ),
+]
+
 urlpatterns += django.conf.urls.static.static(
     django.conf.settings.MEDIA_URL,
     document_root=django.conf.settings.MEDIA_ROOT,
